@@ -57,21 +57,22 @@ public class Employee {
 	 */
 	
 	public void setMonthlySalary(int grade) {	
-		if (grade == 1) {
-			monthlySalary = GRADE_1_SALARY;
-			if (isForeigner) {
-				monthlySalary = (int) (GRADE_1_SALARY * 1.5);
+		switch (grade) {
+			case 1:
+				monthlySalary = GRADE_1_SALARY;
+				break;
+			case 2:
+				monthlySalary = GRADE_2_SALARY;
+				break;
+			case 3:
+				monthlySalary = GRADE_3_SALARY;
+				break;
+			default:
+				throw new IllegalArgumentException("Invalid grade");
 			}
-		}else if (grade == 2) {
-			monthlySalary = GRADE_2_SALARY;
-			if (isForeigner) {
-				monthlySalary = (int) (GRADE_1_SALARY * 1.5);
-			}
-		}else if (grade == 3) {
-			monthlySalary = GRADE_3_SALARY;
-			if (isForeigner) {
-				monthlySalary = (int) (GRADE_1_SALARY * 1.5);
-			}
+			
+		if (isForeigner) {
+			monthlySalary = (int) (monthlySalary * 1.5);
 		}
 	}
 	
