@@ -1,7 +1,11 @@
 package lib;
 
 public class TaxFunction {
-
+	private static final int TAX_RATE = 5;
+	private static final int TAX_FREE_INCOME_SINGLE = 54000000;
+  private static final int TAX_FREE_INCOME_MARRIED = 58500000;
+  private static final int TAX_FREE_INCOME_CHILD = 4500000;
+  private static final int MAX_CHILDREN_ALLOWANCE = 3;
 	
 	/**
 	 * Fungsi untuk menghitung jumlah pajak penghasilan pegawai yang harus dibayarkan setahun.
@@ -16,29 +20,15 @@ public class TaxFunction {
 	
 	
 	public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible, boolean isMarried, int numberOfChildren) {
-		
-		int tax = 0;
-		
-		if (numberOfMonthWorking > 12) {
-			System.err.println("More than 12 month working per year");
-		}
-		
-		if (numberOfChildren > 3) {
-			numberOfChildren = 3;
-		}
-		
-		if (isMarried) {
-			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - (54000000 + 4500000 + (numberOfChildren * 1500000))));
-		}else {
-			tax = (int) Math.round(0.05 * (((monthlySalary + otherMonthlyIncome) * numberOfMonthWorking) - deductible - 54000000));
-		}
-		
-		if (tax < 0) {
-			return 0;
-		}else {
-			return tax;
-		}
-			 
+		int taxFreeIncome = isMarried ? TAX_FREE_INCOME_MARRIED : TAX_FREE_INCOME_SINGLE;
+		int childAllowance = Math.min(numberOfChildren, MAX_CHILDREN_ALLOWANCE) * TAX_FREE_INCOME_PER_CHILD;
+
+		int totalIncome = (monthlySalary + otherMonthlyIncome) * numberOfMonthWorking;
+    int taxableIncome = totalIncome - deductible - taxFreeIncome - childAllowance;
+
+		int tax = (int) Math.round(TAX_RATE * taxableIncome);
+
+	  return Math.max(0, tax);
 	}
 	
 }
