@@ -22,7 +22,10 @@ public class TaxFunction {
 	public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible, boolean isMarried, int numberOfChildren) {
 		int taxFreeIncome = isMarried ? TAX_FREE_INCOME_MARRIED : TAX_FREE_INCOME_SINGLE;
 		int childAllowance = Math.min(numberOfChildren, MAX_CHILDREN_ALLOWANCE) * TAX_FREE_INCOME_PER_CHILD;
-		
+
+		int totalIncome = (monthlySalary + otherMonthlyIncome) * numberOfMonthWorking;
+
+    return Math.max(0, tax);
 	}
 	
 }
