@@ -30,6 +30,10 @@ public class Employee {
 
 	private List<String> childNames;
 	private List<String> childIdNumbers;
+
+	private static final int GRADE_1_SALARY = 3000000;
+  private static final int GRADE_2_SALARY = 5000000;
+  private static final int GRADE_3_SALARY = 7000000;
 	
 	public Employee(String employeeId, String firstName, String lastName, String idNumber, String address, int yearJoined, int monthJoined, int dayJoined, boolean isForeigner, boolean gender) {
 		this.employeeId = employeeId;
@@ -54,19 +58,19 @@ public class Employee {
 	
 	public void setMonthlySalary(int grade) {	
 		if (grade == 1) {
-			monthlySalary = 3000000;
+			monthlySalary = GRADE_1_SALARY;
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				monthlySalary = (int) (GRADE_1_SALARY * 1.5);
 			}
 		}else if (grade == 2) {
-			monthlySalary = 5000000;
+			monthlySalary = GRADE_2_SALARY;
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				monthlySalary = (int) (GRADE_1_SALARY * 1.5);
 			}
 		}else if (grade == 3) {
-			monthlySalary = 7000000;
+			monthlySalary = GRADE_3_SALARY;
 			if (isForeigner) {
-				monthlySalary = (int) (3000000 * 1.5);
+				monthlySalary = (int) (GRADE_1_SALARY * 1.5);
 			}
 		}
 	}
