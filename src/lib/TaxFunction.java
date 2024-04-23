@@ -24,6 +24,7 @@ public class TaxFunction {
 		int childAllowance = Math.min(numberOfChildren, MAX_CHILDREN_ALLOWANCE) * TAX_FREE_INCOME_PER_CHILD;
 
 		int totalIncome = (monthlySalary + otherMonthlyIncome) * numberOfMonthWorking;
+    int taxableIncome = totalIncome - deductible - taxFreeIncome - childAllowance;
 
     return Math.max(0, tax);
 	}
