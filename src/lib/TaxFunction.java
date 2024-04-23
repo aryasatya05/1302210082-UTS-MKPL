@@ -26,7 +26,9 @@ public class TaxFunction {
 		int totalIncome = (monthlySalary + otherMonthlyIncome) * numberOfMonthWorking;
     int taxableIncome = totalIncome - deductible - taxFreeIncome - childAllowance;
 
-    return Math.max(0, tax);
+		int tax = (int) Math.round(TAX_RATE * taxableIncome);
+
+	  return Math.max(0, tax);
 	}
 	
 }
